@@ -1,13 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-
-interface PostProps {
-    id: number,
-    author: string,
-    content: string,
-    createdDate: string,
-    likes: number
-}
+import { PostProps } from "@/app/(tabs)";
+import { formatDistanceToNow } from "date-fns";
+import { ptBR} from "date-fns/locale";
 
 interface PostItemProps {
     post: PostProps
@@ -23,7 +18,7 @@ export default function PostItem({post} : PostItemProps){
         
                                 <View style={styles.postInfo}>
                                     <Text style={styles.username}>{post.author}</Text>
-                                    <Text style={styles.timestamp}>{post.createdDate}</Text>
+                                    <Text style={styles.timestamp}>{formatDistanceToNow(post.createdDate, {locale: ptBR, addSuffix: true})}</Text>
                                 </View>
                             </View>
         
